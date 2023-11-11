@@ -109,6 +109,25 @@
             }];
             ensureDatabases = [ "beanweb" ];
           };
+
+          systemd.services.banwebplus2-scrape = {
+            description = ''
+              Automatically scrapes the NMT Banweb site, and writes
+              its data into the MySQL server.
+            '';
+            serviceConfig.User = "wwwrun";
+            script = ''
+              set -x
+              root=$(mktemp -d)
+              cd $root
+
+              ${unSymlinkedRoot}/scraping/new_mexico_tech_banweb.py -v
+              ${pkgs.php}/bin/php ${unSymlinkedRoot}/scraping/php_to_mysql.php
+
+              cd
+              rm -rf $root
+            '';
+          };
         };
     };
   };
