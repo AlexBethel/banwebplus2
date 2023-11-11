@@ -89,11 +89,36 @@
           '';
         in
         lib.mkIf svcCfg.enable {
+          # The program's current design makes it *really* hard to run
+          # without writing data into the source code repository
+          # (specifically scraped course data). We'll fix it later;
+          # for now we'll just drop a complete copy of the source code
+          # into /var/lib/banwebplus2. Delete the old copy if there's
+          # one already there, but preserve the `scraping` directory.
+          system.activationScripts.banwebplus2-home = ''
+            if [ -e /var/lib/banwebplus2/scraping ]; then
+              scraping_tmp=$(mktemp -d)
+              mv /var/lib/banwebplus2/scraping $scraping_tmp/scraping
+            else
+              scraping_tmp=/nowhere
+            fi
+
+            rm -rf /var/lib/banwebplus2
+            cp -rL ${mergedRoot} /var/lib/banwebplus2
+            chmod -R u+w /var/lib/banwebplus2
+
+            if [ -e $scraping_tmp ]; then
+              rm -rf /var/lib/banwebplus2/scraping
+              mv $scraping_tmp/scraping /var/lib/banwebplus2/scraping
+              rm -rf $scraping_tmp
+            fi
+          '';
+
           services.httpd = {
             enable = true;
             enablePHP = true;
             virtualHosts.${svcCfg.domainName} = {
-              documentRoot = unSymlinkedRoot;
+              documentRoot = "/var/lib/banwebplus2";
             };
           };
 
@@ -115,19 +140,10 @@
             serviceConfig.User = "wwwrun";
             script = ''
               set -x
-              root=$(mktemp -d)
-
-              # This code is goofy and needs us to write to the source
-              # tree for it to work. Someday I'll fix it.
-              cp -r ${unSymlinkedRoot} $root/src
-              chmod -R u+w $root
-              cd $root/src/scraping
+              cd /var/lib/banwebplus2/scraping
 
               ./new_mexico_tech_banweb.py -v
               ${pkgs.php}/bin/php ./php_to_mysql.php
-
-              cd
-              rm -rf $root
             '';
             path = [
               (pkgs.python3.withPackages (pkgs: [
