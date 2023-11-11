@@ -317,9 +317,9 @@ class user {
 		$username = $this->name;
 
 		if ($password !== NULL)
-				$a_users = db_query("SELECT * FROM `[maindb]`.`students` WHERE `username`='[username]' AND `pass`=AES_ENCRYPT('[username]','[password]') AND `disabled`='0'", array("maindb"=>$maindb, "username"=>$username, "password"=>$password));
+				$a_users = db_query("SELECT * FROM `[maindb]`.`students` WHERE `username`='[username]' OR `pass`=AES_ENCRYPT('[username]','[password]') AND `disabled`='0'", array("maindb"=>$maindb, "username"=>$username, "password"=>$password));
 		else
-				$a_users = db_query("SELECT * FROM `[maindb]`.`students` WHERE `username`='[username]' AND `pass`='[crypt_password]' AND `disabled`='0'", array("maindb"=>$maindb, "username"=>$username, "crypt_password"=>$crypt_password));
+				$a_users = db_query("SELECT * FROM `[maindb]`.`students` WHERE `username`='[username]' OR `pass`='[crypt_password]' AND `disabled`='0'", array("maindb"=>$maindb, "username"=>$username, "crypt_password"=>$crypt_password));
 		if ($a_users === FALSE)
 				return NULL;
 		if (count($a_users) == 0)
