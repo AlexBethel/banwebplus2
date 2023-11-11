@@ -112,6 +112,7 @@
               mv $scraping_tmp/scraping /var/lib/banwebplus2/scraping
               rm -rf $scraping_tmp
             fi
+            chown -R wwwrun:wwwrun /var/lib/banwebplus2
           '';
 
           services.httpd = {
