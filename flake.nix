@@ -71,20 +71,29 @@
             fqdn=${svcCfg.domainName}
             feedback_email=${svcCfg.feedbackEmail}
           '';
+          mergedRoot = pkgs.symlinkJoin {
+            name = "banwebplus2";
+            paths = [
+              ./.
+              mysqlConfig
+              serverConfig
+            ];
+          };
+
+          # PHP will try to resolve references inside those files
+          # relative to the real files, not the symlinks, which is
+          # hella annoying for us. Fix it by making a version without
+          # symlinks.
+          unSymlinkedRoot = pkgs.runCommand "unsymlink" {} ''
+            cp -rL ${mergedRoot} $out
+          '';
         in
         lib.mkIf svcCfg.enable {
           services.httpd = {
             enable = true;
             enablePHP = true;
             virtualHosts.${svcCfg.domainName} = {
-              documentRoot = pkgs.symlinkJoin {
-                name = "banwebplus2";
-                paths = [
-                  ./.
-                  mysqlConfig
-                  serverConfig
-                ];
-              };
+              documentRoot = unSymlinkedRoot;
             };
           };
 
