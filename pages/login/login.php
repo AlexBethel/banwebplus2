@@ -61,13 +61,13 @@ function draw_login_page($session_expired_message) {
 	<form id='login_form'>
 		<label class='errors'><?php echo $session_expired_message; ?></label><br />
 		<label name='username'>Username</label>
-		<input type='textbox' size='20' name='username'><br />
+		<input type='textbox' size='20' name='username' disabled='1'><br />
 		<label name='password'>Password</label>
-		<input type='password' size='20' name='password' onkeydown='if (event.which == 13) { $(this).parent().find("input[value=Submit]").click(); };'><br />
+		<input type='password' size='20' name='password' disabled='1' onkeydown='if (event.which == 13) { $(this).parent().find("input[value=Submit]").click(); };'><br />
 		<div style='float:right;'>
-			<input type='button' value='Submit' onclick='send_ajax_call_from_form("/pages/login/login_ajax.php",$(this).parent().parent().prop("id"));' />
+			<input type='button' value='Submit' disabled='1' onclick='send_ajax_call_from_form("/pages/login/login_ajax.php",$(this).parent().parent().prop("id"));' />
 		</div><br />
-		<div style='color:gray; font-size:12px;'>Do NOT use your TCC login.</div>
+		<div style='color:gray; font-size:12px;'>Non-guest accounts are disabled on this instance.</div>
 	</form>
 	<br />
 	<span>
