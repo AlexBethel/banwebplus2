@@ -146,15 +146,15 @@ $a_database_insert_values = array(
 		array("name"=>"deletebugs",     "level"=>2, "parent"=>"development")
 	),
 	"tabs" => array(
-		array("name"=>"Calendar", "printed_name"=>"Calendar", "draw_tab"=>1, "order"=>0),
-		array("name"=>"Schedule", "printed_name"=>"Schedule", "draw_tab"=>1, "order"=>2),
-		array("name"=>"Custom",   "printed_name"=>"Custom",   "draw_tab"=>1, "order"=>4),
-		array("name"=>"Classes",  "printed_name"=>"Classes",  "draw_tab"=>1, "order"=>6),
-		array("name"=>"Lists",    "printed_name"=>"Lists",    "draw_tab"=>1, "order"=>8),
-		array("name"=>"Settings", "printed_name"=>"Settings", "draw_tab"=>1, "order"=>10),
-		array("name"=>"Feedback", "printed_name"=>"Feedback", "draw_tab"=>1, "order"=>12, "accesses"=>"feedback"),
-		array("name"=>"Users",    "printed_name"=>"Users",    "draw_tab"=>1, "order"=>14, "accesses"=>"users"),
-		array("name"=>"Account",  "printed_name"=>"Account",  "draw_tab"=>1, "order"=>16)
+		array("name"=>"Calendar", "printed_name"=>"Calendar", "draw_tab"=>1, "order"=>0, "_deleted"=>0),
+		array("name"=>"Schedule", "printed_name"=>"Schedule", "draw_tab"=>1, "order"=>2, "_deleted"=>0),
+		array("name"=>"Custom",   "printed_name"=>"Custom",   "draw_tab"=>1, "order"=>4, "_deleted"=>0),
+		array("name"=>"Classes",  "printed_name"=>"Classes",  "draw_tab"=>1, "order"=>6, "_deleted"=>0),
+		array("name"=>"Lists",    "printed_name"=>"Lists",    "draw_tab"=>1, "order"=>8, "_deleted"=>0),
+		array("name"=>"Settings", "printed_name"=>"Settings", "draw_tab"=>1, "order"=>10, "_deleted"=>0),
+		array("name"=>"Feedback", "printed_name"=>"Feedback", "draw_tab"=>1, "order"=>12, "accesses"=>"feedback", "_deleted"=>0),
+		array("name"=>"Users",    "printed_name"=>"Users",    "draw_tab"=>1, "order"=>14, "accesses"=>"users", "_deleted"=>0),
+		array("name"=>"Account",  "printed_name"=>"Account",  "draw_tab"=>1, "order"=>16, "deleted"=>0)
 	)
 );
 
