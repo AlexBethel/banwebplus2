@@ -91,7 +91,7 @@ class ProjectInstaller {
 					$s_primary_key_column = $s_column_name;
 				if ($a_column_structure["indexed"])
 					$a_indexed_columns[] = $s_column_name;
-				$s_create_statement = sprintf("%s NOT NULL %s",
+				$s_create_statement = sprintf("%s NULL %s",
 					$a_column_structure["type"], $a_column_structure["special"]);
 				$a_column_create_statements[$s_column_name] = $s_create_statement;
 			}
