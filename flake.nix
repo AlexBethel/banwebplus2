@@ -116,14 +116,23 @@
             script = ''
               set -x
               root=$(mktemp -d)
-              cd $root
 
-              ${unSymlinkedRoot}/scraping/new_mexico_tech_banweb.py -v
-              ${pkgs.php}/bin/php ${unSymlinkedRoot}/scraping/php_to_mysql.php
+              # This code is goofy and needs us to write to the source
+              # tree for it to work. Someday I'll fix it.
+              cp -r ${unSymlinkedRoot} $root/src
+              cd $root/src/scraping
+
+              ./new_mexico_tech_banweb.py -v
+              ${pkgs.php}/bin/php ./php_to_mysql.php
 
               cd
               rm -rf $root
             '';
+            path = [
+              (pkgs.python3.withPackages (pkgs: [
+                pkgs.urllib3 pkgs.beautifulsoup4
+              ]))
+            ];
           };
         };
     };
