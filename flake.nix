@@ -104,7 +104,7 @@
               # wwwrun is the default username used by httpd.
               name = "wwwrun";
               ensurePermissions = {
-                "banwebplus2.*" = "ALL PRIVILEGES";
+                "beanweb.*" = "ALL PRIVILEGES";
               };
             }];
             ensureDatabases = [ "beanweb" ];
