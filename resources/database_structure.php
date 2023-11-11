@@ -75,7 +75,7 @@ $a_basic_tables_structure = array(
 		"disabled" =>              array("type" => "TINYINT",      "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
 		"username" =>              array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
 		"email" =>                 array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
-		"pass" =>                  array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
+		"pass" =>                  array("type" => "VARBINARY(255)","indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
 		"accesses" =>              array("type" => "TEXT",         "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => "")
 	),
 	"semester_whitelist" => array(
