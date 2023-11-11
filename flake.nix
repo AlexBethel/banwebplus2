@@ -111,10 +111,7 @@
           };
 
           systemd.services.banwebplus2-scrape = {
-            description = ''
-              Automatically scrapes the NMT Banweb site, and writes
-              its data into the MySQL server.
-            '';
+            description = "Scraper for NMT Banweb";
             serviceConfig.User = "wwwrun";
             script = ''
               set -x
