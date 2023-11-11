@@ -154,7 +154,7 @@ $a_database_insert_values = array(
 		array("name"=>"Settings", "printed_name"=>"Settings", "draw_tab"=>1, "order"=>10, "_deleted"=>0),
 		array("name"=>"Feedback", "printed_name"=>"Feedback", "draw_tab"=>1, "order"=>12, "accesses"=>"feedback", "_deleted"=>0),
 		array("name"=>"Users",    "printed_name"=>"Users",    "draw_tab"=>1, "order"=>14, "accesses"=>"users", "_deleted"=>0),
-		array("name"=>"Account",  "printed_name"=>"Account",  "draw_tab"=>1, "order"=>16, "deleted"=>0)
+		array("name"=>"Account",  "printed_name"=>"Account",  "draw_tab"=>1, "order"=>16, "_deleted"=>0)
 	)
 );
 
