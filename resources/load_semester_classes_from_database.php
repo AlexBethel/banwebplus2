@@ -76,7 +76,7 @@ function load_semester_classes_from_database($s_year, $s_semester, $s_output_typ
 	foreach($a_classes_db as $a_class) {
 			$a_classes[] = $a_class;
 			$crn = $a_class["CRN"];
-			$subcrn = $crn+"A";
+			$subcrn = $crn . "A";
 			foreach($a_subclasses as $k=>$a_subclass) {
 					if ($a_subclass["CRN"] == $subcrn) {
 							$a_classes[] = $a_subclass;
