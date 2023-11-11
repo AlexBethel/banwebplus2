@@ -45,6 +45,8 @@ classes for a schedule was a painstaking process that often took 2-3 hours every
 * Either remove user accounts entirely, or implement proper password
   hashing; until one of these is done, user accounts remain in the
   system but disabled in the UI.
+* Remove irrelevant features: e.g., bugs and feedback; use GitHub
+  issues and the admin e-mail instead.
 * Modify the overall project organization to avoid the need for the
   source directory to be mutable; currently, scraped data gets written
   to $ROOT/scraping, and this directory needs to be mutable for the
