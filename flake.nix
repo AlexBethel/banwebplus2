@@ -84,7 +84,7 @@
           # relative to the real files, not the symlinks, which is
           # hella annoying for us. Fix it by making a version without
           # symlinks.
-          unSymlinkedRoot = pkgs.runCommand "unsymlink" {} ''
+          unSymlinkedRoot = pkgs.runCommand "banwebplus2" {} ''
             cp -rL ${mergedRoot} $out
           '';
         in
