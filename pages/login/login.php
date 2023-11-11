@@ -70,6 +70,7 @@ function draw_login_page($session_expired_message) {
 		<div style='color:gray; font-size:12px;'>Non-guest accounts are disabled on this instance.</div>
 	</form>
 	<br />
+        <!-- 
 	<span>
 		<span id="create_form" style="min-width:">
 			<input type="hidden" name="draw_create_user_page" value="1">
@@ -80,6 +81,7 @@ function draw_login_page($session_expired_message) {
 			<a href="#" class="black_link" onclick="send_ajax_call_from_form('/pages/users/ajax.php','password_form');">Forgot Password</a>
 		</span>
 	</span>
+        -->
 	</div>
 	<?php
 	$s_page = ob_get_contents();
