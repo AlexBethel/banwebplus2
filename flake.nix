@@ -84,7 +84,7 @@
           # relative to the real files, not the symlinks, which is
           # hella annoying for us. Fix it by making a version without
           # symlinks.
-          unSymlinkedRoot = pkgs.runCommand "banwebplus2" {} ''
+          unSymlinkedRoot = pkgs.runCommand "banwebplus2" { } ''
             cp -rL ${mergedRoot} $out
           '';
         in
@@ -136,21 +136,33 @@
             ensureDatabases = [ "beanweb" ];
           };
 
-          systemd.services.banwebplus2-scrape = {
-            description = "Scraper for NMT Banweb";
-            serviceConfig.User = "wwwrun";
-            script = ''
-              set -x
-              cd /var/lib/banwebplus2/scraping
+          systemd = {
+            services.banwebplus2-scrape = {
+              description = "Scraper for NMT Banweb";
+              serviceConfig.User = "wwwrun";
+              script = ''
+                set -x
+                cd /var/lib/banwebplus2/scraping
 
-              ./new_mexico_tech_banweb.py -v
-              ${pkgs.php}/bin/php ./php_to_mysql.php
-            '';
-            path = [
-              (pkgs.python3.withPackages (pkgs: [
-                pkgs.urllib3 pkgs.beautifulsoup4
-              ]))
-            ];
+                ./new_mexico_tech_banweb.py -v
+                ${pkgs.php}/bin/php ./php_to_mysql.php
+              '';
+              path = [
+                (pkgs.python3.withPackages (pkgs: [
+                  pkgs.urllib3
+                  pkgs.beautifulsoup4
+                ]))
+              ];
+            };
+
+            timers.banwebplus2-scrape = {
+              description = "Run banweb scrape every hour";
+              wantedBy = [ "timers.target" ];
+              timerConfig = {
+                # Run scrape job every hour, on the hour.
+                OnCalendar = "* *-*-* *:00:00";
+              };
+            };
           };
         };
     };
