@@ -4,8 +4,9 @@ banwebplus2
 Make personal class scheduling simpler.
 
 ## Example use
-The original project is currently in use at https://beanweb.us, but
-is no longer functional. This version is not yet deployed.
+The original project is currently in use at https://beanweb.us, but is
+no longer functional. This version is currently deployed at
+https://beanweb2.a-bethel.net/index.php.
 
 ## Why?
 This project was originally conceived to help [New Mexico Tech](http://www.nmt.edu/) students create a user schedule.
@@ -33,3 +34,26 @@ classes for a schedule was a painstaking process that often took 2-3 hours every
 * report bugs/provide feedback
 * multiple semesters, complete with course history
 * scrape data off of the [existing NMT website](https://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncgslctcrsoff)
+
+## To do
+* Make all documentation consistent.
+* Figure out how to disable directory listings. (NixOS seems to make
+  this a bit trickier than it need be.)
+* Remove the requirement to have an admin user registered.
+* Re-do all the CSS and assets, both to look more modern and be more
+  maintainable.
+* Either remove user accounts entirely, or implement proper password
+  hashing; until one of these is done, user accounts remain in the
+  system but disabled in the UI.
+* Modify the overall project organization to avoid the need for the
+  source directory to be mutable; currently, scraped data gets written
+  to $ROOT/scraping, and this directory needs to be mutable for the
+  system to work correctly.
+* Make the project simpler and easier to maintain using a server-side
+  web framework. Probably clean up the database usage using a proper
+  ORM.
+* Add integration with the registrar published course catalog
+  documents: add course descriptions and prerequisites to the GUI.
+  Possibly also add degree requirements to the GUI.
+* (Very long term, probably will never happen:) Re-write the project
+  in something other than PHP.
