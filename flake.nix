@@ -120,6 +120,7 @@
               # This code is goofy and needs us to write to the source
               # tree for it to work. Someday I'll fix it.
               cp -r ${unSymlinkedRoot} $root/src
+              chmod -R u+w $root
               cd $root/src/scraping
 
               ./new_mexico_tech_banweb.py -v
