@@ -14,10 +14,19 @@ The school's [existing website](https://banweb7.nmt.edu/pls/PROD/hwzkcrof.p_uncg
 classes for a schedule was a painstaking process that often took 2-3 hours every semester. Now, it takes 5 minutes.
 
 ## Installing
-1. Install MySQL, Apache, and git
-2. clone project to /some/path/beanweb
-3. access /some/path/beanweb in a web browser (may require some amount of Apache configuration)
-4. follow the steps necessary to make all statuses successful (green)
+This project includes a `flake.nix` file; the recommended way to
+install it is to import that module as a NixOS module. The following
+configuration options are provided:
+```nix
+{
+  services.banwebplus2 = {
+    enable = true;                       # enable the service
+    domainName = "somewhere.xyz";        # `localhost` by default
+    timezone = "America/Denver";         # don't normally change this for NMT
+    feedbackEmail = "someone@somewhere"; # set this to your e-mail
+  };
+}
+```
 
 ## Features
 * select classes
