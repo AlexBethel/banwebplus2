@@ -27,6 +27,11 @@ configuration options are provided:
   };
 }
 ```
+Navigate to the hosted file `/index.php` in a web browser; at the
+moment, it will prompt you to create a root user account (this does
+not matter at the moment as the account has no privileges and is in
+fact impossible to log in to), and it will wait for the scraping job
+to finish (which can take up to 15 minutes).
 
 ## Features
 * select classes
