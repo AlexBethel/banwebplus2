@@ -71,5 +71,3 @@ to finish (which can take up to 15 minutes).
 * Add integration with the registrar published course catalog
   documents: add course descriptions and prerequisites to the GUI.
   Possibly also add degree requirements to the GUI.
-* (Very long term, probably will never happen:) Re-write the project
-  in something other than PHP.
