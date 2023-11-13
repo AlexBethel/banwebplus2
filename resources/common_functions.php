@@ -75,6 +75,7 @@ function dont_check_session_expired() {
 function draw_page_head($outside_content = '') {
     global $global_path_to_jquery;
     $a_page = array();
+    $a_page[] = "<!DOCTYPE html>";
     $a_page[] = "<html>";
     $a_page[] = "<head>";
     $a_page[] = "<link href='/css/main.css' rel='stylesheet' type='text/css'>";
