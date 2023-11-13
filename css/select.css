@@ -1,27 +1,27 @@
 option {
-	background-color: white;
+    background-color: white;
 }
 
 option.empty {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 option.conflicting {
-	background-color: #fcc;
+    background-color: #fcc;
 }
 
 option.selected {
-	background-color: #ff4;
+    background-color: #ff4;
 }
 
 select.empty {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 select.conflicting {
-	background-color: #fcc;
+    background-color: #fcc;
 }
 
 select.selected {
-	background-color: #ff4;
+    background-color: #ff4;
 }
