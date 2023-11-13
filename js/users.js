@@ -1,205 +1,205 @@
 o_userManager = {
-	users: null,
-	selectedUsername: null,
-	disabledUsers: null,
-	
-	/**
-	 * Load the list of users from the server
-	 * If already loaded force a load again with "force_load"
-	 * @return array [success:true, users:An array of users] if the users are loaded, or [success:false, details:string] if there was an error
-	 */
-	getUsers: function(force_load) {
-		if (typeof(force_load) == 'undefined')
-			force_load = false;
-		if (this.users === null || force_load) {
-			var commands = JSON.parse(send_ajax_call('/resources/ajax_calls.php', { command:'get_full_users_list' }));
-			var command = commands[0];
-			if (command.command == "success")
-				this.users = {success:true, users:command.action};
-			else
-				return {success:false, details:command.action};
-		}
-		return this.users;
-	},
-	
-	/**
-	 * Selects a user and prepares the action buttons for the user management area
-	 * @user_row dom element The user row that was clicked on
-	 */
-	selectUser: function(user_row) {
-		var get_username_index = function(jheader_row) {
-			var i_username_index = -1;
-			for (var i = 0; i < jheader_row.children().length; i++)
-				if ($(jheader_row.children()[i]).text().toLowerCase() == "username") {
-					i_username_index = i;
-					break;
-				}
-			return i_username_index;
-		}
-		
-		// get the index of "username" in the table header
-		var juser_row = $(user_row);
-		var jheader_row = $(juser_row.siblings()[0]);
-		var i_username_index = get_username_index(jheader_row);
-		if (i_username_index == -1)
-			return;
-		
-		// get the username
-		var s_username = $(juser_row.find("td")[i_username_index]).text();
-		this.selectedUsername = s_username;
-		
-		// set the username as active
-		$("#userManagementChooseUser").hide();
-		$("#userManagementApplyAction").find("span.username").text(s_username);
-		$("#userManagementApplyAction").show();
+    users: null,
+    selectedUsername: null,
+    disabledUsers: null,
 
-		// check for disabled/non-disabled account
-		var jdisabled = $("#userManagementApplyAction").find(".disabled_actions");
-		var jnormal = $("#userManagementApplyAction").find(".normal_actions");
-		if (this.disabledUsers.indexOf(s_username) >= 0) {
-			jdisabled.show();
-			jnormal.hide();
-		} else {
-			jnormal.show();
-			jdisabled.hide();
-		}
-	},
-	
-	/**
-	 * returns the username of the selected user or "" if no username has been selected
-	 */
-	getSelectedUser: function() {
-		if (this.selectedUsername === null)
-			return ""
-		return this.selectedUsername;
-	},
+    /**
+     * Load the list of users from the server
+     * If already loaded force a load again with "force_load"
+     * @return array [success:true, users:An array of users] if the users are loaded, or [success:false, details:string] if there was an error
+     */
+    getUsers: function(force_load) {
+        if (typeof(force_load) == 'undefined')
+            force_load = false;
+        if (this.users === null || force_load) {
+            var commands = JSON.parse(send_ajax_call('/resources/ajax_calls.php', { command:'get_full_users_list' }));
+            var command = commands[0];
+            if (command.command == "success")
+                this.users = {success:true, users:command.action};
+            else
+                return {success:false, details:command.action};
+        }
+        return this.users;
+    },
 
-	/** 
-	 * populates the user management tool area with the selected tool
-	 * @which string One of "resetPassword", "createNew", "modifyAccess", and "delete"
-	 */
-	populateUserManagement: function(which) {
-		
-		// get/set some values
-		var jcontainer = $("#user_action_form_container");
-		
-		// get the content to insert
-		var s_setval = "";
-		switch(which) {
-		case 'resetPassword':
-			s_setval += "<form id='user_action_form_container_form'>Enter the new password: ";
-			s_setval += "<input type='password' name='password' onkeydown='form_enter_press(this, event);'></input>";
-			s_setval += "<input type='button' value='Submit' onclick='send_ajax_call_from_form_super(\"/resources/ajax_calls_super.php\", \"user_action_form_container_form\", null);'></input>";
-			s_setval += "<input type='hidden' name='username' value='"+this.selectedUsername+"' ></input>";
-			s_setval += "<input type='hidden' name='command' value='reset_password'></input>";
-			s_setval += "<label class='error'></label><br />";
-			s_setval += "</form>";
-			break;
-		case 'createNew':
-			break;
-		case 'modifyAccess':
-			break;
-		case 'delete':
-			break;
-		case 'enableAccount':
-			s_setval += "<form id='user_action_form_container_form'>";
-			s_setval += "<input type='hidden' name='username' value='"+this.selectedUsername+"' ></input>";
-			s_setval += "<input type='hidden' name='command' value='enable_account'></input>";
-			s_setval += "<label class='error'></label>";
-			s_setval += "</form>";
-			s_setval += "<script type='text/javascript'>send_ajax_call_from_form_super(\"/resources/ajax_calls_super.php\", \"user_action_form_container_form\", null);</script>";
-			break;
-		}
-		
-		// insert the content
-		jcontainer.html("");
-		jcontainer.append(s_setval);
-	},
+    /**
+     * Selects a user and prepares the action buttons for the user management area
+     * @user_row dom element The user row that was clicked on
+     */
+    selectUser: function(user_row) {
+        var get_username_index = function(jheader_row) {
+            var i_username_index = -1;
+            for (var i = 0; i < jheader_row.children().length; i++)
+                if ($(jheader_row.children()[i]).text().toLowerCase() == "username") {
+                    i_username_index = i;
+                    break;
+                }
+            return i_username_index;
+        }
 
-	/**
-	 * Sets the password for the given user
-	 */
-	resetPassword: function() {
-	},
+        // get the index of "username" in the table header
+        var juser_row = $(user_row);
+        var jheader_row = $(juser_row.siblings()[0]);
+        var i_username_index = get_username_index(jheader_row);
+        if (i_username_index == -1)
+            return;
 
-	/**
-	 * Populates the users in the users management area
-	 */
-	populateUsers: function() {
-		
-		// get the users from the server
-		var users_array = this.getUsers(true);
-		if (!users_array.success) {
-			$("#user_list_content_container").html("");
-			$("#user_list_content_container").append("error: "+users_array.details);
-			return;
-		}
-		var users = users_array.users;
+        // get the username
+        var s_username = $(juser_row.find("td")[i_username_index]).text();
+        this.selectedUsername = s_username;
 
-		// get the names of the columns for the users table
-		// find the index of the username column
-		var a_col_names = [];
-		var username_index = 0;
-		var i = 0;
-		$.each(users[0], function(k,v) {
-			if (k == "username") {
-				username_index = i;
-			}
-			if (k != "disabled") {
-				a_col_names.push(k);
-			}
-			i++;
-		});
-		
-		// generate the rows to add them to the table
-		// gather the names of the disabled students
-		// count the active/disabled users
-		var active_count = 0;
-		var disabled_count = 0;
-		var a_rows = [];
-		var disabled = [];
-		$.each(users, function(key,user) {
-			var a_row = [];
-			var is_active = true;
-			$.each(user, function(k,v) {
-				if (k != "disabled") {
-					a_row.push(v);
-				} else if (parse_int(v) == 1) {
-					disabled.push(user.username);
-					is_active = false;
-				}
-			});
-			if (is_active) {
-				active_count++;
-			} else {
-				disabled_count++;
-			}
-			a_rows.push(a_row);
-		});
-		this.disabledUsers = disabled;
+        // set the username as active
+        $("#userManagementChooseUser").hide();
+        $("#userManagementApplyAction").find("span.username").text(s_username);
+        $("#userManagementApplyAction").show();
 
-		// create the markup for the active/disabled counts
-		var jcount = $("<div class='centered' style='font-size:20px; font-weight:normal;'>Number of Active Users: "+active_count+"<br />Number of Disabled Users: "+disabled_count+"</div>");
-		
-		// draw the table to the screen
-		var table = create_table(a_col_names, a_rows, null, "o_userManager.selectUser");
-		$("#user_list_content_container").html("");
-		$("#user_list_content_container").append(jcount);
-		$("#user_list_content_container").append(table);
+        // check for disabled/non-disabled account
+        var jdisabled = $("#userManagementApplyAction").find(".disabled_actions");
+        var jnormal = $("#userManagementApplyAction").find(".normal_actions");
+        if (this.disabledUsers.indexOf(s_username) >= 0) {
+            jdisabled.show();
+            jnormal.hide();
+        } else {
+            jnormal.show();
+            jdisabled.hide();
+        }
+    },
 
-		// mark disabled rows
-		var jtable = $("#user_list_content_container").find("table");
-		var rows = jtable.find("tr");
-		$.each(rows, function(k,v) {
-			var jtr = $(v);
-			var cols = jtr.find("td");
-			if (cols.length == 0) {
-				return;
-			}
-			var username = $(cols[username_index]).text();
-			if (disabled.indexOf(username) > -1) {
-				jtr.addClass("disabled");
-			}
-		});
-	},
+    /**
+     * returns the username of the selected user or "" if no username has been selected
+     */
+    getSelectedUser: function() {
+        if (this.selectedUsername === null)
+            return ""
+        return this.selectedUsername;
+    },
+
+    /**
+     * populates the user management tool area with the selected tool
+     * @which string One of "resetPassword", "createNew", "modifyAccess", and "delete"
+     */
+    populateUserManagement: function(which) {
+
+        // get/set some values
+        var jcontainer = $("#user_action_form_container");
+
+        // get the content to insert
+        var s_setval = "";
+        switch(which) {
+        case 'resetPassword':
+            s_setval += "<form id='user_action_form_container_form'>Enter the new password: ";
+            s_setval += "<input type='password' name='password' onkeydown='form_enter_press(this, event);'></input>";
+            s_setval += "<input type='button' value='Submit' onclick='send_ajax_call_from_form_super(\"/resources/ajax_calls_super.php\", \"user_action_form_container_form\", null);'></input>";
+            s_setval += "<input type='hidden' name='username' value='"+this.selectedUsername+"' ></input>";
+            s_setval += "<input type='hidden' name='command' value='reset_password'></input>";
+            s_setval += "<label class='error'></label><br />";
+            s_setval += "</form>";
+            break;
+        case 'createNew':
+            break;
+        case 'modifyAccess':
+            break;
+        case 'delete':
+            break;
+        case 'enableAccount':
+            s_setval += "<form id='user_action_form_container_form'>";
+            s_setval += "<input type='hidden' name='username' value='"+this.selectedUsername+"' ></input>";
+            s_setval += "<input type='hidden' name='command' value='enable_account'></input>";
+            s_setval += "<label class='error'></label>";
+            s_setval += "</form>";
+            s_setval += "<script type='text/javascript'>send_ajax_call_from_form_super(\"/resources/ajax_calls_super.php\", \"user_action_form_container_form\", null);</script>";
+            break;
+        }
+
+        // insert the content
+        jcontainer.html("");
+        jcontainer.append(s_setval);
+    },
+
+    /**
+     * Sets the password for the given user
+     */
+    resetPassword: function() {
+    },
+
+    /**
+     * Populates the users in the users management area
+     */
+    populateUsers: function() {
+
+        // get the users from the server
+        var users_array = this.getUsers(true);
+        if (!users_array.success) {
+            $("#user_list_content_container").html("");
+            $("#user_list_content_container").append("error: "+users_array.details);
+            return;
+        }
+        var users = users_array.users;
+
+        // get the names of the columns for the users table
+        // find the index of the username column
+        var a_col_names = [];
+        var username_index = 0;
+        var i = 0;
+        $.each(users[0], function(k,v) {
+            if (k == "username") {
+                username_index = i;
+            }
+            if (k != "disabled") {
+                a_col_names.push(k);
+            }
+            i++;
+        });
+
+        // generate the rows to add them to the table
+        // gather the names of the disabled students
+        // count the active/disabled users
+        var active_count = 0;
+        var disabled_count = 0;
+        var a_rows = [];
+        var disabled = [];
+        $.each(users, function(key,user) {
+            var a_row = [];
+            var is_active = true;
+            $.each(user, function(k,v) {
+                if (k != "disabled") {
+                    a_row.push(v);
+                } else if (parse_int(v) == 1) {
+                    disabled.push(user.username);
+                    is_active = false;
+                }
+            });
+            if (is_active) {
+                active_count++;
+            } else {
+                disabled_count++;
+            }
+            a_rows.push(a_row);
+        });
+        this.disabledUsers = disabled;
+
+        // create the markup for the active/disabled counts
+        var jcount = $("<div class='centered' style='font-size:20px; font-weight:normal;'>Number of Active Users: "+active_count+"<br />Number of Disabled Users: "+disabled_count+"</div>");
+
+        // draw the table to the screen
+        var table = create_table(a_col_names, a_rows, null, "o_userManager.selectUser");
+        $("#user_list_content_container").html("");
+        $("#user_list_content_container").append(jcount);
+        $("#user_list_content_container").append(table);
+
+        // mark disabled rows
+        var jtable = $("#user_list_content_container").find("table");
+        var rows = jtable.find("tr");
+        $.each(rows, function(k,v) {
+            var jtr = $(v);
+            var cols = jtr.find("td");
+            if (cols.length == 0) {
+                return;
+            }
+            var username = $(cols[username_index]).text();
+            if (disabled.indexOf(username) > -1) {
+                jtr.addClass("disabled");
+            }
+        });
+    },
 };
