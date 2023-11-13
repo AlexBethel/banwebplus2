@@ -202,7 +202,7 @@ function set_selected_classes(jcontainer_of_table) {
                 edit_class_row_property(jrow, i_select_index, '');
                 jrow.removeClass("selected");
             } else {
-                edit_class_row_property(jrow, i_select_index, '<div class="centered"><img src="/images/blue_sphere.png" style="width:21px;height:21px"></div>');
+                edit_class_row_property(jrow, i_select_index, '<div class="centered"><img src="/images/blue_circle.svg" style="width:21px;height:21px"></div>');
                 jrow.addClass("selected");
             }
         }
@@ -301,7 +301,7 @@ function add_remove_class(class_row) {
         // update the gui
         jclass_row.addClass("selected");
         if (i_select_index > -1)
-            edit_class_row_property(jclass_row, i_select_index, '<div class="centered"><img src="/images/blue_sphere.png" style="width:21px;height:21px"></div>');
+            edit_class_row_property(jclass_row, i_select_index, '<div class="centered"><img src="/images/blue_circle.svg" style="width:21px;height:21px"></div>');
     } else {
         o_courses.removeUserClass(s_crn);
         jclass_row.removeClass("selected");

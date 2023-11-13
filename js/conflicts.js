@@ -78,8 +78,8 @@ typeConflictingCourses = function(o_courses) {
         if (!b_found)
             return;
 
-        var normal_image = '/images/red_sphere.png';
-        var highlighted = '/images/red_sphere.png';//'/images/red_sphere_highlighted.png';
+        var normal_image = '/images/red_circle.svg';
+        var highlighted = '/images/red_circle.svg';//'/images/red_sphere_highlighted.png';
         var i_conflicts_index = get_index_of_header("conflicts", headers);
         for (var i = 0; i < a_jrow.length; i++) {
             var jrow = a_jrow[i];
