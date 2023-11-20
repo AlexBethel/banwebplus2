@@ -83,6 +83,11 @@ function draw_login_page($session_expired_message) {
              </span>
         -->
     </div>
+    <!-- I'm sticking this here from observations of the generated
+    code; it's not the "right" way to generate this from the PHP, but
+    it'll do. -->
+    </td></tr><tr><td>
+    <a class="highlight_link" href="https://discord.gg/QsZcD3RdJT">Discord server</a> &bullet; <a class="highlight_link" href="https://discord.gg/QsZcD3RdJT">Source code</a>
     <?php
     $s_page = ob_get_contents();
     ob_end_clean();
