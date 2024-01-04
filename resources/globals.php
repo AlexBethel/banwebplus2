@@ -31,7 +31,7 @@ function define_global_vars() {
     if (file_exists($filename)) {
         $a_configs = parse_ini_file($filename);
     } else {
-        print_debug_as_html_paragraph("Could not find ${filename}");
+        print_debug_as_html_paragraph("Could not find {$filename}");
     }
 
     if ($a_configs === FALSE) {
