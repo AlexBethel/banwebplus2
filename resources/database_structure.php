@@ -49,6 +49,7 @@ $a_basic_tables_structure = array(
         "seats" =>                 array("type" => "INT",          "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
         "limit" =>                 array("type" => "INT",          "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
         "enroll" =>                array("type" => "INT",          "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
+        "course_fees" =>            array("type" => "INT",          "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
         "parent_class" =>          array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
         "subclass_identifier" =>   array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),
         "user_ids_with_access" =>  array("type" => "VARCHAR(255)", "indexed" => FALSE, "isPrimaryKey" => FALSE, "special" => ""),

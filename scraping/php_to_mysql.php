@@ -202,7 +202,7 @@ function saveClasses($term) {
 	$classes_to_save = array();
 	$subclasses_to_save = array();
 	foreach($term["classes"] as $a_class) {
-			fillClass($a_class, array("CRN"=>0, "subject"=>"", "Course"=>"", "*Campus"=>"", "Days"=>"", "Time"=>"", "Location"=>"", "Hrs"=>0, "Title"=>"", "Instructor"=>"", "Seats"=>0, "Limit"=>0, "Enroll"=>0));
+			fillClass($a_class, array("CRN"=>0, "subject"=>"", "Course"=>"", "*Campus"=>"", "Days"=>"", "Time"=>"", "Location"=>"", "Hrs"=>0, "Title"=>"", "Instructor"=>"", "Seats"=>0, "Limit"=>0, "Enroll"=>0, "Course Fees"=>0));
 			$a_days = str_split(str_replace(" ", "", $a_class["Days"]));
 			$a_days_times_locations = array();
 			foreach($a_days as $s_day) {
@@ -237,6 +237,7 @@ function saveClasses($term) {
 									 "seats"=>$a_class["Seats"],
 									 "limit"=>$a_class["Limit"],
 									 "enroll"=>$a_class["Enroll"],
+									 "Course Fees"=>$a_class["Course Fees"],
 									 "parent_class"=>$parent_class,
 									 "subclass_identifier"=>$subclass_id,
 									 "last_mod_time"=>$modtime);

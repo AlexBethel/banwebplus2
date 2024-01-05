@@ -67,7 +67,7 @@ var subjects_201330 = [
     ['THEA', 'Theater'],
     ['WGS', 'Women\'s and Gender Studies']
 ];
-var headers_201330 = ['Conflicts', 'Select', 'CRN', 'Course', '*Campus', 'Days', 'Time', 'Location', 'Hrs', 'Title', 'Instructor', 'Seats', 'Limit', 'Enroll'];
+var headers_201330 = ['Conflicts', 'Select', 'CRN', 'Course', '*Campus', 'Days', 'Time', 'Location', 'Hrs', 'Title', 'Instructor', 'Seats', 'Limit', 'Enroll', 'Course Fees'];
 var full_course_list_201330 = [
     [
         ['63042', 'ACCT 202D-01', 'M', 'M W F', '0900-1030', 'CRAMER 123', '3', 'Fundamentals of Accounting II', 'Robert T. Guthrie', '21', '25', '4'],

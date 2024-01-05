@@ -40,7 +40,7 @@ function load_semester_classes_from_database($s_year, $s_semester, $s_output_typ
 
     // build the query to load the classes
     $access_to_custom_class = "`subject`!='CUSTOM' OR `user_ids_with_access` LIKE '%|{$id},%'";
-    $s_select_clause = "`subject`,`enroll` AS `Enroll`,`title` AS `Title`,`days` AS `Days`,`hours` AS `Hrs`,`limit` AS `Limit`,`location` AS `Location`,`time` AS `Time`,`parent_class`,`crn` AS `CRN`,`course` AS `Course`,`campus` AS `*Campus`,`seats` AS `Seats`,`instructor` AS `Instructor`,`user_ids_with_access` AS `accesses`";
+    $s_select_clause = "`subject`,`enroll` AS `Enroll`,`title` AS `Title`,`days` AS `Days`,`hours` AS `Hrs`,`limit` AS `Limit`,`location` AS `Location`,`time` AS `Time`,`parent_class`,`crn` AS `CRN`,`course` AS `Course`,`campus` AS `*Campus`,`seats` AS `Seats`,`instructor` AS `Instructor`,`user_ids_with_access` AS `accesses`, 'course_fees' AS 'Course Fees'";
     if ($b_just_count) {
         $s_select_clause = "COUNT(*) AS `count`";
     }
@@ -175,7 +175,8 @@ function save_custom_class_to_db($a_values, $i_user_id, $sem, $year) {
         "instructor"=>$a_values["Instructor"],
         "seats"=>0,
         "limit"=>$a_values["Limit"],
-        "enroll"=>0,
+	"enroll"=>0,
+	"course_fees"=>0,
         "parent_class"=>"",
         "subclass_identifier"=>"",
         "user_ids_with_access"=>"rwx|{$i_user_id},",
