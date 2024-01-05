@@ -1,4 +1,4 @@
-headers = ['Conflicts', 'Select', 'CRN', 'Course', '*Campus', 'Days', 'Time', 'Location', 'Hrs', 'Title', 'Instructor', 'Seats', 'Limit', 'Enroll'];
+headers = ['Conflicts', 'Select', 'CRN', 'Course', '*Campus', 'Days', 'Time', 'Location', 'Hrs', 'Title', 'Instructor', 'Seats', 'Limit', 'Enroll', 'Course Fees'];
 classes_table_classes = ['auto_table_classes', 'auto_header_classes', 'auto_row_classes'];
 
 o_courses = null;

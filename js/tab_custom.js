@@ -10,7 +10,7 @@ window.tabCustomClasses = {
         var getDefaultDescription = function(propertyName) {
             var randVal = o_listsTab.populateValuePlaceholder($("<input value='"+propertyName+"'>"), $("<input value='contains'>"), "", true, []);
             var retval = randVal;
-            var defaults = { '*Campus':'M', Days:'W', Time:'1600-1800', Location:'Field', Hrs:'0', Title:'Soccer Practice', Instructor:'Soccer Coach', Seats:'20', Limit:'20', Enroll:'20' }
+            var defaults = { '*Campus':'M', Days:'W', Time:'1600-1800', Location:'Field', Hrs:'0', Title:'Soccer Practice', Instructor:'Soccer Coach', Seats:'20', Limit:'20', Enroll:'20', 'Course Fees':'25' }
             if (defaults[propertyName]) {
                 retval = defaults[propertyName];
             }
@@ -24,7 +24,7 @@ window.tabCustomClasses = {
 
         // get the properties to draw
         customHeaders = $.grep(customHeaders, function(v,k) {
-            var dontAdd = ["Select", "Conflicts", "Course", "Seats", "Enroll"];
+            var dontAdd = ["Select", "Conflicts", "Course", "Seats", "Enroll", "Course Fees"];
             if (dontAdd.indexOf(v) == -1) {
                 return true;
             } else {

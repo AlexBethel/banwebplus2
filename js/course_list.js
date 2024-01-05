@@ -14,7 +14,7 @@ typeCoursesList = function() {
     var conflicting_objects = [];
     var default_semester = '';
     conflicting_object = null;
-
+    
     this.setSemester = function(sem) {
         semester = sem;
         if (typeof(full_course_list[semester]) == 'undefined')
@@ -555,6 +555,9 @@ typeCoursesList = function() {
                     course[11] = a_courses[i]['Seats'];
                     course[12] = a_courses[i]['Limit'];
                     course[13] = a_courses[i]['Enroll'];
+
+                    course[14] = a_courses[i]['Course Fees']; // Added for a course Fees column
+
                     course['accesses'] = a_courses[i]['accesses'];
                     full_course_list[sem][s_subject].push(course);
                 }
