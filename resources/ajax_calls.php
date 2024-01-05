@@ -1,4 +1,8 @@
 <?php
+// turn off error reporting because it causes *massive* fucked problems
+// grrrrrrrrrrrr ~alex
+error_reporting(0);
+
 require_once(dirname(__FILE__)."/common_functions.php");
 require_once(dirname(__FILE__)."/check_logged_in.php");
 require_once(dirname(__FILE__)."/db_query.php");
