@@ -6,7 +6,7 @@ Make personal class scheduling simpler.
 ## Example use
 The original project is currently in use at https://beanweb.us, but is
 no longer functional. This version is currently deployed at
-https://beanweb2.a-bethel.net/index.php.
+https://beanweb.a-bethel.net/index.php.
 
 ## Why?
 This project was originally conceived to help [New Mexico Tech](http://www.nmt.edu/) students create a user schedule.
