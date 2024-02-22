@@ -87,7 +87,9 @@ function draw_login_page($session_expired_message) {
     code; it's not the "right" way to generate this from the PHP, but
     it'll do. -->
     </td></tr><tr><td>
-    <!--<a class="highlight_link" href="https://discord.gg/QsZcD3RdJT">Discord server</a> &bullet;--> <a class="highlight_link" href="https://github.com/alexbethel/banwebplus2">Source code</a>
+        This site is no longer receiving new features&mdash;check out <a class="highlight_link" href="https://teaweb.a-bethel.net/">TeaWeb</a> (beta)!
+        <br>
+        <a class="highlight_link" href="https://github.com/alexbethel/banwebplus2">Source code</a>
     <?php
     $s_page = ob_get_contents();
     ob_end_clean();
